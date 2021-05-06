@@ -6,15 +6,15 @@ import java.io.IOException;
 public class AppIO {
 	
 	public static void main(String[] args) throws IOException {
-		File diretórioQualquer = new File("c:/qualquer");
-		System.out.println(diretórioQualquer.getCanonicalPath());
+		File anyDirectory = new File("/home/web/Desktop/qualquer");
+		System.out.println(anyDirectory.getCanonicalPath());
 		
-		File[] arquivosEmDiretórioQualquer = diretórioQualquer.listFiles();
-		for (File file : arquivosEmDiretórioQualquer) {
-			System.out.println(file.getName() + ", size=" + file.length());
+		File[] filesInAnyDirectory = anyDirectory.listFiles();
+		for (File file : filesInAnyDirectory) {
+			System.out.println(file.getName() + ", Size: " + file.length() + " Bytes");
 		}
 		
-		System.out.println("Foi.");
+		System.out.println("Ready.");
 	}
 
 }
