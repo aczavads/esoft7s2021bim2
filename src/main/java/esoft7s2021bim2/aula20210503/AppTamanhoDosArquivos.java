@@ -7,11 +7,17 @@ public class AppTamanhoDosArquivos {
 
 	public static void main(String[] args) throws IOException {
 		String nomeDoDiretório = "c:/qualquer";
+		
+		listarArquivosNoConsole(nomeDoDiretório);
+		
 		long tamanhoTotalDosArquivos = calcularTamanhoTotalArquivos(nomeDoDiretório);
 		System.out.println(
-				"O tamanho total dos aquivos de '" + nomeDoDiretório + "' �: " + tamanhoTotalDosArquivos + " bytes");
+				"O tamanho total dos aquivos de '" + nomeDoDiretório + " é: " + tamanhoTotalDosArquivos + " bytes");
 	}
 
+	private static void listarArquivosNoConsole(String nomeDoDiretório) throws IOException {
+		
+	}
 	private static long calcularTamanhoTotalArquivos(String nomeDoDiretório) throws IOException {
 		long total = 0;
 		File diretório = new File(nomeDoDiretório);
