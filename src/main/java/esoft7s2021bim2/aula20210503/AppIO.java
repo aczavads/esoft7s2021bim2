@@ -6,11 +6,11 @@ import java.io.IOException;
 public class AppIO {
 	
 	public static void main(String[] args) throws IOException {
-		File diret髍ioQualquer = new File("c:/qualquer");
-		System.out.println(diret髍ioQualquer.getCanonicalPath());
+		File diret贸rioQualquer = new File("c:/qualquer");
+		System.out.println(diret贸rioQualquer.getCanonicalPath());
 		
-		File[] arquivosEmDiret髍ioQualquer = diret髍ioQualquer.listFiles();
-		for (File file : arquivosEmDiret髍ioQualquer) {
+		File[] arquivosEmDiret贸rioQualquer = diret贸rioQualquer.listFiles();
+		for (File file : arquivosEmDiret贸rioQualquer) {
 			System.out.println(file.getName() + ", size=" + file.length());
 		}
 		

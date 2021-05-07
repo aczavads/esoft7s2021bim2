@@ -6,17 +6,17 @@ import java.io.IOException;
 public class AppTamanhoDosArquivos {
 
 	public static void main(String[] args) throws IOException {
-		String nomeDoDiretório = "c:/qualquer";
-		long tamanhoTotalDosArquivos = calcularTamanhoTotalArquivos(nomeDoDiretório);
+		String nomeDoDiretÃ³rio = "c:/qualquer";
+		long tamanhoTotalDosArquivos = calcularTamanhoTotalArquivos(nomeDoDiretÃ³rio);
 		System.out.println(
-				"O tamanho total dos aquivos de '" + nomeDoDiretório + "' é: " + tamanhoTotalDosArquivos + " bytes");
+				"O tamanho total dos aquivos de '" + nomeDoDiretÃ³rio + "' ï¿½: " + tamanhoTotalDosArquivos + " bytes");
 	}
 
-	private static long calcularTamanhoTotalArquivos(String nomeDoDiretório) throws IOException {
+	private static long calcularTamanhoTotalArquivos(String nomeDoDiretÃ³rio) throws IOException {
 		long total = 0;
-		File diretório = new File(nomeDoDiretório);
-		File[] arquivosDoDiretório = diretório.listFiles();
-		for (File file : arquivosDoDiretório) {
+		File diretÃ³rio = new File(nomeDoDiretÃ³rio);
+		File[] arquivosDoDiretÃ³rio = diretÃ³rio.listFiles();
+		for (File file : arquivosDoDiretÃ³rio) {
 			if (file.isDirectory()) {
 				total += calcularTamanhoTotalArquivos(file.getCanonicalPath());
 			} else {
