@@ -34,11 +34,11 @@ public class AppTamanhoDosArquivos {
 		File[] auxDiretórios = Arrays.stream(diretório.listFiles())
 				.filter( f -> f.isDirectory())
 				.collect(Collectors.toList())
-				.toArray(File[]::new);
+				.toArray(new File[] {});
 		File[] auxArquivos = Arrays.stream(diretório.listFiles())
 				.filter( f -> !f.isDirectory())
 				.collect(Collectors.toList())
-				.toArray(File[]::new);
+				.toArray(new File[] {});
 		File[] arquivosDoDiretório = Stream.of(auxDiretórios, auxArquivos)
 				.flatMap(Stream::of)
 				.toArray(File[]::new);
