@@ -60,17 +60,23 @@ public class AppThreadManager extends JDialog {
 					remove(tm);
 					revalidate();
 				}
-				int índiceUltimoArquivoLido = 0;
-				for (int i = 0; i < quantidadeDeThreads; i++) {
-					
+			    int índiceUltimoArquivoLido = 0;
+				for (int i = 0; i < quantidadeDeThreads; i++) {					
 					//laço atualizando o índiceUltimoArquivoLido até atingir 
 					//índiceUltimoArquivoLido + arquivosPorThread
 					//dentro do laço, adicione os arquivos em uma lista que será passada
 					//no construtor da thread.
+					System.out.println("---");
+					List<File> arquivosDaThread = new ArrayList<>();
+					int limite = índiceUltimoArquivoLido + arquivosPorThread;
+					while (índiceUltimoArquivoLido < arquivosOrigem.length && índiceUltimoArquivoLido < limite) {
+						System.out.println(arquivosOrigem[índiceUltimoArquivoLido].getName());
+						arquivosDaThread.add(arquivosOrigem[índiceUltimoArquivoLido]);
+						índiceUltimoArquivoLido++;
+					}
 					
 					ThreadManager novo = new ThreadManager(
-							new CopiadorDeArquivosGerenciável(
-									/* passar a lista de arquivos que ESTA THREAD copiará. */));
+							new CopiadorDeArquivosGerenciável(arquivosDaThread, fieldDirDestino.getText()));
 					add(novo);
 					managers.add(novo);
 					revalidate();
