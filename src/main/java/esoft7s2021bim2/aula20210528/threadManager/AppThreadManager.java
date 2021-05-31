@@ -36,6 +36,8 @@ public class AppThreadManager extends JDialog {
 		
 		public ThreadManager(ContadorThreadGerenciável contadorThreadGerenciável) {
 			this.contadorThreadGerenciável = contadorThreadGerenciável;
+			//Aqui estamos vinculando o listener à Thread, de modo que possamos
+			//obter as atualizações dos valores conforme a Thread trabalha.
 			this.contadorThreadGerenciável.setListener(novoValor -> {
 				progressBar.setValue(novoValor);
 				progressBar.revalidate();

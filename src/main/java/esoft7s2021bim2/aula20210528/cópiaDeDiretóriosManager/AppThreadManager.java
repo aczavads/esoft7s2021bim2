@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
@@ -42,16 +43,34 @@ public class AppThreadManager extends JDialog {
 				File dirOrigem = new File(fieldDirOrigem.getText());
 				File[] arquivosOrigem = dirOrigem.listFiles();
 				//calcular este valor em função da quantidade de arquivos na origem
-				//e da quantidade de arquivos que serão copiados por thread.
-				int quantidadeDeThreads = 3; //mudar aqui!
+				//e da quantidade de arquivos que serão copiados por thread.				
+				int quantidadeDeThreads = 0;
+				int arquivosPorThread = 0;
+				try {
+					arquivosPorThread = Integer.parseInt(fieldArquivosPorThread.getText());
+					quantidadeDeThreads = arquivosOrigem.length / arquivosPorThread;
+					if (arquivosOrigem.length % arquivosPorThread != 0) {
+						quantidadeDeThreads += 1;
+					}
+				} catch (NumberFormatException e2) {
+					JOptionPane.showMessageDialog(rootPane, "Por favor, digite um número inteiro.");
+				}
 				
 				for (ThreadManager tm : managers) {
 					remove(tm);
 					revalidate();
 				}
+				int índiceUltimoArquivoLido = 0;
 				for (int i = 0; i < quantidadeDeThreads; i++) {
+					
+					//laço atualizando o índiceUltimoArquivoLido até atingir 
+					//índiceUltimoArquivoLido + arquivosPorThread
+					//dentro do laço, adicione os arquivos em uma lista que será passada
+					//no construtor da thread.
+					
 					ThreadManager novo = new ThreadManager(
-							new CopiadorDeArquivosGerenciável(/* passar a lista de arquivos que ESTA THREAD copiará. */));
+							new CopiadorDeArquivosGerenciável(
+									/* passar a lista de arquivos que ESTA THREAD copiará. */));
 					add(novo);
 					managers.add(novo);
 					revalidate();
