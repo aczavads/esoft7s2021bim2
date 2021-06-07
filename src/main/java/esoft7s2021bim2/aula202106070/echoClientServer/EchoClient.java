@@ -1,13 +1,15 @@
-package esoft7s2021bim2.aula202106070.simpleSockets;
+package esoft7s2021bim2.aula202106070.echoClientServer;
 
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class AppSimpleClient {
+import javax.swing.JOptionPane;
+
+public class EchoClient {
 	
 	public static void main(String[] args) {
-		AppSimpleClient client = new AppSimpleClient();
+		EchoClient client = new EchoClient();
 		client.doIt();
 	}
 
@@ -17,7 +19,10 @@ public class AppSimpleClient {
 			PrintWriter toServer = new PrintWriter(socket.getOutputStream(), true);
 			Scanner fromServer = new Scanner(socket.getInputStream());
 			
-			toServer.println("Olá servidor, tudo jóia?");
+			//enquanto message não for quit, repita!
+			String message = JOptionPane.showInputDialog("");
+			
+			toServer.println(message);
 			if (fromServer.hasNextLine()) { 
 				System.out.println("Resposta do server: " + fromServer.nextLine());
 			}
