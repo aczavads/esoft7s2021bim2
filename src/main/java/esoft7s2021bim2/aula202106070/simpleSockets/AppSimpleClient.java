@@ -18,11 +18,10 @@ public class AppSimpleClient {
 			Scanner fromServer = new Scanner(socket.getInputStream());
 			
 			toServer.println("Olá servidor, tudo jóia?");
-			System.out.println("Reading from server...");
 			if (fromServer.hasNextLine()) {
-			    System.out.println("p1");
 				System.out.println("Resposta do server: " + fromServer.nextLine());
 			}
+			
 			fromServer.close();
 			toServer.close();
 			socket.close();						

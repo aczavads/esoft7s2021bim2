@@ -23,17 +23,19 @@ public class AppSimpleServer {
 			logger.info("Server listening on port 9099.");
 			while (true) {
 				Socket clientSocket = serverSocket.accept();
+				logger.info("Client connected!");
+				
 				Scanner fromCliente = new Scanner(clientSocket.getInputStream());
 				PrintWriter toCliente = new PrintWriter(clientSocket.getOutputStream(), true);
 				
 				if (fromCliente.hasNextLine()) {
 					System.out.println("Message from client: ["+fromCliente.nextLine()+"]");
 				}
-				System.out.println(">>>>>>>>>>>> cliente respondeu.");
 				toCliente.println(new Date().toLocaleString());
 				toCliente.close();
 				fromCliente.close();
 				clientSocket.close();
+				logger.info("Client disconnected.");
 			}
 		} catch (Exception e) {
 			logger.severe(e.getMessage());
