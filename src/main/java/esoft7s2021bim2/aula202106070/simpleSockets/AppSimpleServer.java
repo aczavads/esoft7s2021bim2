@@ -26,12 +26,11 @@ public class AppSimpleServer {
 				Scanner fromCliente = new Scanner(clientSocket.getInputStream());
 				PrintWriter toCliente = new PrintWriter(clientSocket.getOutputStream(), true);
 				
-				while (fromCliente.hasNextLine()) {
+				if (fromCliente.hasNextLine()) {
 					System.out.println("Message from client: ["+fromCliente.nextLine()+"]");
 				}
 				System.out.println(">>>>>>>>>>>> cliente respondeu.");
 				toCliente.println(new Date().toLocaleString());
-				toCliente.flush();
 				toCliente.close();
 				fromCliente.close();
 				clientSocket.close();
