@@ -32,7 +32,6 @@ public class ListFilesServer {
 				if (command.startsWith("ls")) {
 					//ls c:/windows
 					PrintWriter toCliente = new PrintWriter(clientSocket.getOutputStream(), true);
-					//File diretório = new File("c:/windows");
 					String dirName = command.split(" ")[1];
 					File diretório = new File(dirName);
 					File[] auxDiretórios = diretório.listFiles();
@@ -44,6 +43,19 @@ public class ListFilesServer {
 				} else if (command.startsWith("size")) {
 					//size c:/windows
 					//size d:/
+					PrintWriter toCliente = new PrintWriter(clientSocket.getOutputStream(), true);
+					String dirName = command.split(" ")[1];
+					File diretório = new File(dirName);
+					File[] auxDiretórios = diretório.listFiles();
+					long totalSize = 0;
+					for (File file : auxDiretórios) {
+						if (!file.isDirectory()) {							
+							totalSize += file.length();
+						}
+					}					
+					toCliente.println(totalSize);
+					toCliente.flush();
+					toCliente.close();					
 				}
 				
 				fromCliente.close();

@@ -1,7 +1,9 @@
 package esoft7s2021bim2.aula20210611.listFilesServer;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class ListFilesClient {
@@ -20,18 +22,12 @@ public class ListFilesClient {
 				command = fromConsole.nextLine();
 				if (command.startsWith("ls")) {
 					//ls c:/windows
-					Socket socket = new Socket("localhost", 9099);
-					PrintWriter toServer = new PrintWriter(socket.getOutputStream(), true);
-					Scanner fromServer = new Scanner(socket.getInputStream());
-					
-					toServer.println(command);
-					
-					while (fromServer.hasNextLine()) {
-						System.out.println(fromServer.nextLine());
-					}
+					//ls d:/
+					executeCommand(command);
 				} else if (command.startsWith("size")) {
 					//size c:/windows
 					//size d:/
+					executeCommand(command);
 				}
 			}
 
@@ -39,6 +35,18 @@ public class ListFilesClient {
 			e.printStackTrace();
 		}
 		
+	}
+
+	private void executeCommand(String command) throws UnknownHostException, IOException {
+		Socket socket = new Socket("localhost", 9099);
+		PrintWriter toServer = new PrintWriter(socket.getOutputStream(), true);
+		Scanner fromServer = new Scanner(socket.getInputStream());
+		
+		toServer.println(command);
+		
+		while (fromServer.hasNextLine()) {
+			System.out.println(fromServer.nextLine());
+		}
 	}
 
 }
